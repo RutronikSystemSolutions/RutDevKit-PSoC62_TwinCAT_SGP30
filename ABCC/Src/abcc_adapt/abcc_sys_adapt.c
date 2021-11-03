@@ -44,10 +44,10 @@ static void hms_irq_deinit(void);
 #endif
 
 /* Defines */
-#define ABCC_SYS_OM0              	POT_ADC
+#define ABCC_SYS_OM0              	ARDU_ADC1
 #define ABCC_SYS_OM1              	ARDU_ADC2
 #define ABCC_SYS_OM2              	ARDU_ADC3
-#define ABCC_SYS_OM3              	ARDU_ADC5
+#define ABCC_SYS_OM3              	POT_ADC
 #define ABCC_SYS_OM3_POR          	CYHAL_PORT_10
 #define ABCC_SYS_OM3_PIN          	(5u)
 

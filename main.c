@@ -190,7 +190,7 @@ static cy_rslt_t gpio_init(void)
     {return result;}
 
     /*Initialize Operation Mode Outputs*/
-    result = cyhal_gpio_init( POT_ADC, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
+    result = cyhal_gpio_init( ARDU_ADC1, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
     if (result != CY_RSLT_SUCCESS)
     {return result;}
     result = cyhal_gpio_init( ARDU_ADC2, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
@@ -199,7 +199,7 @@ static cy_rslt_t gpio_init(void)
     result = cyhal_gpio_init( ARDU_ADC3, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
     if (result != CY_RSLT_SUCCESS)
     {return result;}
-    result = cyhal_gpio_init( ARDU_ADC5, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
+    result = cyhal_gpio_init( POT_ADC, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_PULLUP, false);
     if (result != CY_RSLT_SUCCESS)
     {return result;}
 
