@@ -98,6 +98,13 @@ cyhal_uart_cfg_t hms_uart_config =
 				.rx_buffer_size = 0,
 		};
 
+cyhal_gpio_callback_data_t hms_irq_data =
+{
+		.callback = hms_irq_handler,
+		.callback_arg = NULL,
+
+};
+
 #if( ABCC_CFG_POLL_ABCC_IRQ_PIN )
 _Bool irq_active = false;
 #endif
@@ -153,20 +160,13 @@ static void ABCC_SYS_UartInit( UINT8 bOpmode )
 static void ABCC_SYS_SpiInit(void)
 {
 	cy_rslt_t result;
-	cyhal_clock_t spi_clock;
-
-	result = cyhal_clock_allocate(&spi_clock, CYHAL_CLOCK_BLOCK_PERIPHERAL_8BIT);
-    if(result != CY_RSLT_SUCCESS)
-    {
-  	  CY_ASSERT(0);
-    }
 
 	result = cyhal_spi_init(&ABCC_SYS_SPI_HANDLE,
 			ABCC_SYS_SPI_MOSI,
 			ABCC_SYS_SPI_MISO,
 			ABCC_SYS_SPI_CLK,
 			ABCC_SYS_SPI_NSS,
-			&spi_clock,
+			NULL,
 			8,
 			CYHAL_SPI_MODE_00_MSB,
 			false);
@@ -594,7 +594,7 @@ static cy_rslt_t hms_irq_init(void)
     }
 
     /* Configure GPIO interrupt */
-    cyhal_gpio_register_callback(ABCC_SYS_IRQ_PIN, hms_irq_handler, NULL);
+    cyhal_gpio_register_callback(ABCC_SYS_IRQ_PIN, &hms_irq_data);
     cyhal_gpio_enable_event(ABCC_SYS_IRQ_PIN, CYHAL_GPIO_IRQ_FALL, ABCC_IRQ_PRIORITY, true);
 
 	return result;
@@ -607,7 +607,7 @@ static void hms_irq_deinit(void)
 	cyhal_gpio_free(ABCC_SYS_IRQ_PIN);
 
     /* Configure GPIO interrupt */
-    cyhal_gpio_register_callback(ABCC_SYS_IRQ_PIN, NULL, NULL);
+    cyhal_gpio_register_callback(ABCC_SYS_IRQ_PIN, &hms_irq_data);
     cyhal_gpio_enable_event(ABCC_SYS_IRQ_PIN, CYHAL_GPIO_IRQ_FALL, ABCC_IRQ_PRIORITY, false);
 }
 #endif
