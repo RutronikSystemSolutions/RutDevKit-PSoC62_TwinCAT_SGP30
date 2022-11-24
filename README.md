@@ -10,7 +10,7 @@ This application also requires to have the SGP30 sensor connected with Arduino I
 
 ## Requirements
 
-- [ModusToolbox® software](https://www.cypress.com/products/modustoolbox-software-environment) v2.4
+- [ModusToolbox® software](https://www.infineon.com/cms/en/design-support/tools/sdk/modustoolbox-software/) v2.4
 
   
 
